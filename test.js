@@ -16,8 +16,6 @@ var defaultLink = [
 
 function initialSetup() {
   defaultLink.forEach(function(item,i) {
-    console.log("item");
-    console.log(item);
     var options = {
       url : item,
       headers : {"User-Agent" : "Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/50.0.2661.102 Chrome/50.0.2661.102 Safari/537.36"}
@@ -26,17 +24,17 @@ function initialSetup() {
         var $ = cheerio.load(response);
         $('li').filter(function() {
             if(($(this).text().length>0)&&($(this).text().length<100)) {
-                return true;
+              return true;
             } else {
-                return false;
-            }
+              return false;
+          }
         }).each(function() {
-            var newList = $(this).text().toLowerCase();
-            if(inputArray.indexOf(newList) > -1)
-              inputArray += newList + " ";
+          var newList = $(this).text().toLowerCase();
+          if(inputArray.indexOf(newList) < 0){
+            inputArray += $(this).text().toLowerCase();
+          }
         });
     })
   });
 }
-
 initialSetup();
