@@ -31,7 +31,9 @@ function initialSetup() {
                 return false;
             }
         }).each(function() {
-            inputArray += $(this).text() + " ";
+            var newList = $(this).text().toLowerCase();
+            if(inputArray.indexOf(newList) > -1)
+              inputArray += newList + " ";
         });
     })
   });
